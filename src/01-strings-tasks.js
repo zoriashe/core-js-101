@@ -146,9 +146,8 @@ function removeFirstOccurrences(a, b) {
  *   '<span>' => 'span'
  *   '<a>' => 'a'
  */
-function unbracketTag(a) {
-  a.slice(0, 1);
-  return a;
+function unbracketTag(/* str */) {
+  throw new Error('Not implemented');
 }
 
 
@@ -181,8 +180,9 @@ function convertToUpperCase(a) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  const emails = str.split(';');
+  return emails.map((email) => email.trim());
 }
 
 /**
@@ -208,8 +208,14 @@ function extractEmails(/* str */) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const horizontalLine = '─'.repeat(width - 2);
+  const topLine = `┌${horizontalLine}┐\n`;
+  const middleLine = `│${' '.repeat(width - 2)}│\n`;
+  const bottomLine = `└${horizontalLine}┘\n`;
+
+  const box = topLine + middleLine.repeat(height - 2) + bottomLine;
+  return box;
 }
 
 
@@ -229,8 +235,11 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  const index = (x) => input.indexOf(x);
+  return str.split('').map((x) => (index(x) > -1 ? output[index(x)] : x)).join('');
 }
 
 /**
@@ -246,8 +255,8 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(a) {
+  return typeof a === 'string' || a instanceof String;
 }
 
 
@@ -275,8 +284,9 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(a) {
+  const cards = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣', 'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦', 'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥', 'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
+  return cards.indexOf(a);
 }
 
 
